@@ -1,9 +1,11 @@
 package services;
 
+import dataaccess.RoleDB;
 import models.User;
 import java.util.List;
 import dataaccess.UserDB;
 import java.util.ArrayList;
+import models.Role;
 
 /**
  * 
@@ -49,9 +51,11 @@ public class UserService {
      * @return
      * @throws Exception 
      */
-    public int update(String email, String fname, String lname, String password) throws Exception {
+    public int update(String email, String fname, String lname, String password, String roleName) throws Exception {
         UserDB db = new UserDB();
-        User user = new User(email, fname, lname, password, null);
+        RoleDB rb = new RoleDB();
+        Role role = rb.getRoleName(roleName);
+        User user = new User(email, fname, lname, password, role);
         int i = db.update(user);
         return i;
     }
@@ -78,9 +82,11 @@ public class UserService {
      * @return the int from UserDb
      * @throws Exception - all exceptions that could be had.
      */
-    public int insert(String email, String fname, String lname, String password) throws Exception {
+    public int insert(String email, String fname, String lname, String password,String roleName) throws Exception {
         UserDB db = new UserDB();
-        User user = new User(email, fname, lname, password, null);
+        RoleDB rb = new RoleDB();
+        Role role = rb.getRoleName(roleName);
+        User user = new User(email, fname, lname, password, role);
         int i = db.insert(user);
         return i;
     }

@@ -61,6 +61,12 @@
             placeholder="Password"
             required
             />
+                    
+            <select name="roleName" class="input-dark">
+                <option value="System Admin">System Admin</option>
+                <option value="Regular User">Regular User</option>
+                <option value="Company Admin">Company Admin</option>
+<           </select>
           <input type="hidden" name="action" value="add" />
           <input class="input-primary" type="submit" value="Save"/>
         </form>
@@ -143,6 +149,34 @@
             value="${user.password}"
             placeholder="Password"
             />
+          
+          <select class="input-dark" name="roleName">
+              <c:if test = "${user.role.roleName eq 'System Admin'}">
+                  <option value="System Admin" selected>System Admin</option>
+              </c:if>
+                 
+              <c:if test = "${user.role.roleName eq 'Regular User'}">
+                    <option value="Regular User" selected>Regular User</option>
+              </c:if>                  
+                   
+              <c:if test = "${user.role.roleName eq 'Company Admin'}">
+                    <option value="Company Admin" selected>Company Admin</option>
+              </c:if>            
+    
+              <c:if test = "${user.role.roleName eq 'System Admin'}">
+                    <option value="System Admin">System Admin</option>
+              </c:if>     
+                    
+              <c:if test = "${user.role.roleName eq 'Regular User'}">
+                    <option value="Regular User">Regular User</option>
+              </c:if> 
+                
+              <c:if test = "${user.role.roleName eq 'Company Admin'}">
+                    <option value="Company Admin" >Company Admin</option>
+              </c:if>       
+          </select>
+            
+          
             <input type="hidden" name="action" value="edit" />
             <input class="mb-0 input-primary" type="submit" value="Save"/>
             <a href="/users?action=clearEdit">
